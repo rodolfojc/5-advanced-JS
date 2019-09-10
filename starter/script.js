@@ -1,5 +1,6 @@
 //FUNCTION CONSTRUCTOR
 
+/*
 var rodolfo = {
     name: 'Rodolfo',
     yearOfBirth: 1987,
@@ -28,3 +29,42 @@ cesar.calculateAge();
 
 console.log(john.lastName);
 console.log(cesar.lastName);
+
+*/
+
+// OBJECT.CREATE
+
+var personProto = {
+    calculateAge: function(){
+        console.log(2019 - this.yearOfBirth);
+    }
+};
+
+
+var rodolfo = Object.create(personProto);
+rodolfo.name = 'Rodolfo';
+rodolfo.yearOfBirth = 1987;
+rodolfo.job = 'Hardware Operations';
+
+var jane = Object.create(personProto, {
+    
+    name : {value: 'Jane'},
+    yearOfBirth : {value: 1965},
+    job : { value : 'Developer'}
+    
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
