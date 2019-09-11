@@ -155,6 +155,7 @@ console.log(rates);
 
 */
 
+/*
 /////////////////////////////////////////////////////
 // FUNCTIONS RETUNING FUNCTIONS
 
@@ -183,13 +184,31 @@ driverQuestion('Rodolfo');
 // NOT NECCESSARY TO SAVE THE FUNCTION - OTHER WAY
 interviewQuestion('Developer')('Rodolfo');
 
+*/
 
+/////////////////////////////////////////////////////
+// FUNCTIONS: IIFE - INMEDIATELY INVOKED FUNCTIONS
 
+// SCOPING CHAIN ONLY WORKS THE OTHER WAY AROUND 
 
+/*
+function game(){
+    var score = Math.random()*10;
+    console.log(score >= 5);
+}
+game();
 
+*/
 
+(function(){
+    var score = Math.random()*10;
+    console.log(score >= 5);
+ })();
 
-
+(function(goodLuck){
+    var score = Math.random()*10;
+    console.log(score >= 5 - goodLuck);
+ })(5);
 
 
 
