@@ -57,6 +57,8 @@ var jane = Object.create(personProto, {
 
 */
 
+/*
+////////////////////////////////////////////////////
 // PRIMITIVE VS OBJECTS
 
 // PRIMITIVE HOLD THE DATA
@@ -101,10 +103,54 @@ change(age, obj);
 console.log(age);
 console.log(obj.city);
 
+*/
 
+///////////////////////////////////////
+// PASSING FUNCTIONS AS ARGUMENTS 
+// FIRT-CLASS FUNCTIONS 
 
+var years = [1990, 1987, 2000, 1999];
 
+// GENERIC FUNCTION
+function arrayCalc(arr, fn) {
+    
+    var arrResult = [];
+    
+    for (var i = 0; i <  arr.length; i++ ) {
+        arrResult.push(fn(arr[i])); // CALLBACK FUNCTION
+    }
+    
+    return arrResult;
+}
 
+// CALLBACK FUNCTIONS
+
+function calculateAge (el) {
+    return 2019 - el;    
+}
+
+function isFullAge (el){
+    return el >= 18;
+}
+
+function maxHeartRate (el) {
+    if (el >= 18 && el <= 81) {
+        return Math.round(206.9 - (0.67 * el));
+    } else {
+        return -1;
+    }
+    
+}
+
+// TESTING 
+var ages = arrayCalc(years, calculateAge);
+console.log(ages);
+
+var fullAges = arrayCalc(ages, isFullAge);
+console.log(fullAges);
+
+var rates = arrayCalc(ages, maxHeartRate);
+console.log(rates);
 
 
 
