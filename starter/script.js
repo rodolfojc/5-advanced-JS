@@ -218,6 +218,7 @@ game();
 ///////////////////////////////////////////////////////////
 // CLOSURES
 
+/*
 function retirement(retireAge){
     var a = ' years left until retirement';
     return function(yearOfBirth){        
@@ -233,7 +234,7 @@ var retirementIceland = retirement(67);
 retirementUSA(1987);
 retirementGermany(1987);
 retirementIceland(1987);
-
+*/
 
 //retirement(66)(1990);
 
@@ -258,6 +259,7 @@ function interviewQuestion(job){
 
 */
 
+/*
 function interviewQuestions(job){
     driver = ', do you have a licence?';
     developer = ', do you know Java?';
@@ -277,6 +279,91 @@ var iAmdriver = interviewQuestions('Driver');
 iAmdriver('Karla');
 
 interviewQuestions('Developer')('Rodolfo');
+
+*/
+
+/////////////////////////////////////////////////////////////////
+// BIN, CALL AND APPLY
+
+var rodolfo = {
+    name : 'Rodolfo',
+    age : 31,
+    job : 'Developer',
+    presentation : function(style, timeOfDay) {
+        if (style === 'Formal') {
+            console.log('Good ' + timeOfDay + ', ladies and gentlemen, I\'m '+ this.name + ', a ' + this.job);
+        } else if (style === 'Friendly') {
+            console.log('Good ' + timeOfDay + ', what\'s up?,  I\'m '+ this.name + ', a ' + this.job );                   
+        }
+    }
+    
+}
+
+rodolfo.presentation('Formal', 'Morning');
+
+var karla = {
+    name : 'Karla',
+    age : 34,
+    job : 'Designer'
+}
+
+rodolfo.presentation.call(karla, 'Friendly', 'afternnon');
+
+//rodolfo.presentation.apply(karla, ['Friendly', 'afternnon']);
+
+var rodolfoFriendly = rodolfo.presentation.bind(rodolfo, 'Friendly');
+rodolfoFriendly('evening');
+
+var karlaFormal = rodolfo.presentation.bind(karla, 'Formal');
+karlaFormal('night');
+
+
+var years = [1990, 1987, 2000, 1999];
+
+function arrayCalc(arr, fn) {
+    
+    var arrResult = [];
+    
+    for (var i = 0; i <  arr.length; i++ ) {
+        arrResult.push(fn(arr[i])); // CALLBACK FUNCTION
+    }
+    
+    return arrResult;
+}
+
+// CALLBACK FUNCTIONS
+
+function calculateAge (el) {
+    return 2019 - el;    
+}
+
+function isFullAge (limit, el){
+    return el >= limit;
+}
+
+var age = arrayCalc(years, calculateAge);
+var fullJapan = arrayCalc(age, isFullAge.bind(this, 20));
+
+console.log(age);
+console.log(fullJapan);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
