@@ -105,6 +105,7 @@ console.log(obj.city);
 
 */
 
+/*
 ///////////////////////////////////////
 // PASSING FUNCTIONS AS ARGUMENTS 
 // FIRT-CLASS FUNCTIONS 
@@ -151,6 +152,63 @@ console.log(fullAges);
 
 var rates = arrayCalc(ages, maxHeartRate);
 console.log(rates);
+
+*/
+
+/////////////////////////////////////////////////////
+// FUNCTIONS RETUNING FUNCTIONS
+
+function interviewQuestion(job){
+    
+    if(job === 'Driver') {
+        return function(name){
+            console.log(name + ', can you please explain what is this sign?');
+        }
+    } else if(job === 'Developer'){
+        return function (name) {
+            console.log(name + ', do you know OOP - Object Oriented Programming')
+        }
+    } else {
+        return function(name){
+            console.log(name + ', then... what do you do???')
+        }
+    }
+    
+}
+
+// RETURNING A FUNCTION IN A VARIABLE
+var driverQuestion = interviewQuestion('Developer');
+driverQuestion('Rodolfo');
+
+// NOT NECCESSARY TO SAVE THE FUNCTION - OTHER WAY
+interviewQuestion('Developer')('Rodolfo');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
