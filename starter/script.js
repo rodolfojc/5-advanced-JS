@@ -177,6 +177,8 @@ function interviewQuestion(job){
     
 }
 
+
+
 // RETURNING A FUNCTION IN A VARIABLE
 var driverQuestion = interviewQuestion('Developer');
 driverQuestion('Rodolfo');
@@ -200,6 +202,7 @@ game();
 
 */
 
+/*
 (function(){
     var score = Math.random()*10;
     console.log(score >= 5);
@@ -210,17 +213,70 @@ game();
     console.log(score >= 5 - goodLuck);
  })(5);
 
+*/
+
+///////////////////////////////////////////////////////////
+// CLOSURES
+
+function retirement(retireAge){
+    var a = ' years left until retirement';
+    return function(yearOfBirth){        
+        var age = 2019 - yearOfBirth;
+        console.log((retireAge - age) + a);
+    }
+}
+
+var retirementUSA = retirement(66);
+var retirementGermany = retirement(65);
+var retirementIceland = retirement(67);
+
+retirementUSA(1987);
+retirementGermany(1987);
+retirementIceland(1987);
 
 
+//retirement(66)(1990);
 
+/*
+function interviewQuestion(job){
+    
+    if(job === 'Driver') {
+        return function(name){
+            console.log(name + ', can you please explain what is this sign?');
+        }
+    } else if(job === 'Developer'){
+        return function (name) {
+            console.log(name + ', do you know OOP - Object Oriented Programming')
+        }
+    } else {
+        return function(name){
+            console.log(name + ', then... what do you do???')
+        }
+    }
+    
+}
 
+*/
 
+function interviewQuestions(job){
+    driver = ', do you have a licence?';
+    developer = ', do you know Java?';
+    other = ', do you like classic music?';
+    return function(name){
+        if (job === 'Driver'){
+            console.log(name + driver);
+        } else if (job === 'Developer'){
+            console.log(name + developer);
+        } else {
+            console.log(name + other);
+        }
+    }
+}
 
+var iAmdriver = interviewQuestions('Driver');
+iAmdriver('Karla');
 
-
-
-
-
+interviewQuestions('Developer')('Rodolfo');
 
 
 
