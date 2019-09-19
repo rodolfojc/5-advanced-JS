@@ -353,18 +353,31 @@ console.log(fullJapan);
 ///////////////////////////////////////////////////
 // CODING CHALLENGE
 
+
+
+(function()  {
+ 
+ 
+function Question(question, options, number){
+    this.question = question;
+    this.options = options;
+    this.correct = this.options[number];
+}
+    
+/*
 var Question = function(question, options, number){
     this.question = question;
     this.options = options;
     this.correct = this.options[number];
 }
+*/
 
 var questionOne = 'What is the programming language that is most used in the world according to Google Trend?';
 var optionsOne = ['Java', 'Python', 'JavaScript', 'Ruby'];
 var correctOne = 1;
 
 var questionTwo = 'How do you define a integer variable in JavaScript - Keyword?';
-var optionsTwo = ['int', 'integer', 'var', 'Integer'];
+var optionsTwo = ['int', 'integer', 'var', 'Integer', 'INTEGER'];
 var correctTwo = 2;
 
 var questionThree = 'What of the following modifiers in Java is not correct?';
@@ -377,22 +390,74 @@ var questionTwoCreated = new Question(questionTwo, optionsTwo, correctTwo);
 var questionThreeCreated = new Question(questionThree, optionsThree, correctThree);
 
 
-console.log(questionOneCreated);
-console.log(questionTwoCreated);
-console.log(questionThreeCreated);
+//console.log(questionOneCreated);
+//console.log(questionTwoCreated);
+//console.log(questionThreeCreated);
 
 var totalQuestions = [questionOneCreated, questionTwoCreated, questionThreeCreated];
 
-console.log(totalQuestions);
+// OTHER WAY
 
+/*
+Question.prototype.displayQuestion = function(){
+    console.log('Question: ' + this.question);
+    for (var i = 0; i < this.options.length; i++){
+        console.log(i + ' - '+ this.options[i]);
+    }
+}
 
+Question.prototype.checkAnswer = function(ans){
+    
+    if (this.options[ans] === this.correct) {
+        console.log('It\'s Correct!! :) ');
+    } else {
+        console.log('It\'s not Incorrect!! :( ');
+    }
+}
+*/
 
+//console.log(totalQuestions);
 
+function getQuestion(arrQuestions){
+    
+    var ramdomNumber = Math.round(Math.random()*(arrQuestions.length-1));
+    var question = arrQuestions[ramdomNumber];
+    return question;
+}
 
+var score = 0;
 
+function init(totalQuestions, fn){
+    
+    var ramdomQuestion = fn(totalQuestions);
+    console.log('Question: ' + ramdomQuestion.question);
+    console.log('Options: ');
+    for (var i = 0; i < ramdomQuestion.options.length; i++){
+        console.log(i + ' - '+ ramdomQuestion.options[i]);
+    }
+    
+    var inputUser = prompt('Please, enter a number for answering the question!');
+    
+    if (ramdomQuestion.correct === ramdomQuestion.options[inputUser]){
+        console.log('It\'s Correct!! :) ');
+        score++;
+        console.log('Current score is: ' + score)
+        init(totalQuestions, getQuestion);
+    } else if (inputUser === 'Exit'){
+        console.log('See you soon!!');       
+    } else {
+        console.log('It\'s not Incorrect!! :( ');
+        console.log('Current score is: ' + score)
+        init(totalQuestions, getQuestion);
+    }
+    
+    
+    
+}
 
+init(totalQuestions, getQuestion);
 
-
+})();
 
 
 
